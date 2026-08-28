@@ -1,0 +1,380 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR m4g4 (annare.art)
+# This file is distributed under the same license as the M4W Woo Conditional Offers package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: M4W Woo Conditional Offers 1.0.0\n"
+"Report-Msgid-Bugs-To: admin@annare.art\n"
+"POT-Creation-Date: 2026-08-28 13:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/class-m4w-wco-rules.php:105
+msgid "Choose at least one trigger product."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:109
+msgid "Choose an offer product."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:113
+msgid "The offer product cannot also be a trigger product for the same rule."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:118
+#, php-format
+msgid "Trigger product #%d was not found."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:123
+#, php-format
+msgid "Offer product #%d was not found."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:129
+msgid "Discount value must be greater than 0 when discount is enabled."
+msgstr ""
+
+#: includes/class-m4w-wco-rules.php:132
+msgid "Percentage discount cannot exceed 100%."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:24
+#: includes/class-m4w-wco-settings.php:25
+#: includes/class-m4w-wco-settings.php:223
+msgid "Conditional Offers"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:36
+#: includes/class-m4w-wco-settings.php:69
+#: includes/class-m4w-wco-settings.php:87
+#: includes/class-m4w-wco-settings.php:118
+#: includes/class-m4w-wco-settings.php:139
+msgid "Unauthorized"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:52
+#: includes/class-m4w-wco-frontend.php:155
+msgid "Rule not found."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:210
+#: includes/class-m4w-wco-settings.php:234
+#: includes/class-m4w-wco-settings.php:331
+msgid "Add New Rule"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:211
+msgid "Edit Rule"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:212
+msgid "Delete this rule?"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:213
+msgid "Saving..."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:214
+msgid "Error loading rule:"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:215
+msgid "AJAX error loading rule."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:216
+msgid "Error:"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:217
+msgid "Unknown error"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:218
+msgid "AJAX error occurred."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:224
+msgid ""
+"Define rules: when specific product(s) are in the cart, show an offer for "
+"another product."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:227
+msgid "Rule saved."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:230
+msgid "Rule deleted."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:237
+msgid "Existing Rules"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:239
+msgid "No rules defined yet. Click \"Add New Rule\" to create one."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:244
+msgid "ID"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:245
+msgid "Label"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:246
+msgid "Trigger Products (OR)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:247
+msgid "Offer Product"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:248
+msgid "Custom"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:249
+msgid "Display Mode"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:250
+msgid "Popup/Toast Delay"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:251
+msgid "Toast Timeout"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:252
+msgid "Discount"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:253
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:254
+msgid "Actions"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:284
+msgid "Popup"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:287
+msgid "Toast"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:302
+#: includes/class-m4w-wco-settings.php:438
+msgid "Offer product only"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:303
+#: includes/class-m4w-wco-settings.php:440
+msgid "Trigger product only"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:304
+#: includes/class-m4w-wco-settings.php:439
+msgid "Both trigger and offer products"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:316
+msgid "Edit"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:317
+msgid "Delete"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:330
+#: includes/class-m4w-wco-frontend.php:40
+msgid "Close"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:339
+msgid "Label (admin reference)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:341
+msgid "e.g. Offer Course B when Course A or C in cart"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:342
+msgid "Internal name for this rule."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:346
+msgid "Trigger Product IDs (comma-separated, OR condition)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:349
+#, php-format
+msgid ""
+"One or more product IDs. Offer shows if ANY of these are in cart. <a "
+"href=\"%s\" target=\"_blank\">Find product IDs</a>."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:353
+msgid "Offer Product ID"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:356
+msgid "Product to offer when any trigger is in cart."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:360
+msgid "Custom Content (optional)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:363
+msgid ""
+"Optional: Custom HTML/shortcode for the offer. If empty, a default \"Add to "
+"Cart\" button for the offer product will be shown. Available shortcodes: "
+"[ajax_add_to_cart], [button], etc."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:367
+msgid "Display Where"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:369
+msgid "Popup (modal)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:370
+msgid "Toast notification (auto-dismiss)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:371
+msgid ""
+"Choose how the offer is presented automatically when the trigger product is "
+"added to the cart. The <code>[m4w_wco_offer]</code> shortcode can be placed "
+"anywhere and works independently of these options."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:375
+msgid "Toast Timeout (seconds)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:378
+msgid ""
+"How long the toast stays visible before auto-dismissing. Only applies to "
+"toast mode."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:382
+msgid "Toast Custom CSS"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:385
+msgid ""
+"Optional CSS applied only to this rule's toast. Write selectors for the "
+"inner content (e.g. <code>.conditional-offer-title</code>, <code>img</code>, "
+"<code>button</code>). To style the toast container itself use <code>.m4w-wco-"
+"toast</code>."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:389
+msgid "Popup/Toast Delay (seconds)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:392
+msgid ""
+"Delay before showing toast/popup after trigger product is added to cart. Set "
+"to 0 for immediate."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:396
+msgid "Popup Once Per Session"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:400
+msgid "Only show popup once per browser session (uses session cookie)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:406
+msgid "Automatic Discount (when both products in cart)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:409
+msgid "Enable Automatic Discount"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:413
+msgid ""
+"Apply discount automatically when both trigger and offer products are in cart"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:418
+msgid "Discount Type"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:421
+msgid "Percentage (%)"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:422
+msgid "Fixed amount"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:424
+msgid "Type of discount to apply."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:428
+msgid "Discount Value"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:431
+msgid ""
+"For percentage: enter 10 for 10%. For fixed: enter amount in shop currency "
+"(e.g., 5.00)."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:435
+msgid "Apply Discount To"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:442
+msgid "Which product(s) receive the discount."
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:447
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-m4w-wco-settings.php:448
+msgid "Save Rule"
+msgstr ""
+
+#: includes/class-m4w-wco-frontend.php:134
+msgid "Product not found."
+msgstr ""
+
+#: includes/class-m4w-wco-frontend.php:137
+#: includes/class-m4w-wco-frontend.php:183
+msgid "Add to Cart"
+msgstr ""
+
+#: includes/class-m4w-wco-frontend.php:159
+msgid "Offer is not active for the current cart."
+msgstr ""
+
+#: includes/class-m4w-wco-discounts.php:84
+msgid "Conditional Offer Discount"
+msgstr ""
