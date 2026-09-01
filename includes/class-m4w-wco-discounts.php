@@ -45,16 +45,14 @@ class M4W_WCO_Discounts {
 			return;
 		}
 
-		$total_discount = 0.0;
-		$applied        = false;
-
 		foreach ( $rules as $rule ) {
 			if ( empty( $rule['discount_enabled'] ) ) {
 				continue;
 			}
 
+			$rule_id    = intval( $rule['id'] ?? 0 );
 			$trigger_ids = $rule['trigger_product_ids'] ?? array();
-			$offer_id = intval( $rule['offer_product_id'] ?? 0 );
+			$offer_id   = intval( $rule['offer_product_id'] ?? 0 );
 
 			if ( empty( $trigger_ids ) || $offer_id <= 0 ) {
 				continue;
@@ -84,7 +82,7 @@ class M4W_WCO_Discounts {
 				continue;
 			}
 
-			foreach ( $cart->get_cart() as $cart_item ) {
+			foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 				$product_id = intval( $cart_item['product_id'] );
 				$variation_id = intval( $cart_item['variation_id'] ?? 0 );
 
@@ -120,14 +118,22 @@ class M4W_WCO_Discounts {
 				}
 
 				if ( $discount_amount > 0 ) {
-					$total_discount += $discount_amount;
-					$applied = true;
+					$label = sprintf(
+						/* translators: %s: product name. */
+						__( 'Discount on %s', 'm4w-wco' ),
+						$product->get_name()
+					);
+
+					$cart->fees_api()->add_fee(
+						array(
+							'id'      => 'm4w-wco-' . $rule_id . '-' . $cart_item_key,
+							'name'    => $label,
+							'amount'  => - $discount_amount,
+							'taxable' => true,
+						)
+					);
 				}
 			}
-		}
-
-		if ( $applied && $total_discount > 0 ) {
-			$cart->add_fee( __( 'Conditional Offer Discount', 'm4w-wco' ), - $total_discount, true );
 		}
 	}
 }

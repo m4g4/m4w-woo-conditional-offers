@@ -375,6 +375,6 @@ msgstr ""
 msgid "Offer is not active for the current cart."
 msgstr ""
 
-#: includes/class-m4w-wco-discounts.php:84
-msgid "Conditional Offer Discount"
+#: includes/class-m4w-wco-discounts.php:123
+msgid "Discount on %s"
 msgstr ""

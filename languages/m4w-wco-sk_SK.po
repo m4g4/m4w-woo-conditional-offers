@@ -401,6 +401,6 @@ msgstr "Pridať do košíka"
 msgid "Offer is not active for the current cart."
 msgstr "Ponuka nie je aktívna pre aktuálny košík."
 
-#: includes/class-m4w-wco-discounts.php:84
-msgid "Conditional Offer Discount"
-msgstr "Zľava podmienenej ponuky"
+#: includes/class-m4w-wco-discounts.php:123
+msgid "Discount on %s"
+msgstr "Zľava z %s"

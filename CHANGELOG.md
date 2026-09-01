@@ -5,7 +5,7 @@ All notable changes to the M4W Woo Conditional Offers plugin are documented in t
 ## [1.1.1] - 2026-09-01
 
 ### Fixed
-- **Multiple cart items only received a discount on one** - WooCommerce derives a fee ID from its name, so every `Cart::add_fee( 'Conditional Offer Discount', ... )` call collided and only the first was kept. All matching discounts are now aggregated into a single fee.
+- **Multiple cart items only received a discount on one** - WooCommerce derives a fee ID from its name, so every `Cart::add_fee( 'Conditional Offer Discount', ... )` call collided and only the first was kept. Discounts are now added as separate rows per eligible product (each with a unique fee ID), labeled with the discounted product's name, e.g. "Zľava z [product]".
 - **Fixed discounts ignored quantity** - A fixed-amount discount applied once per entire cart line instead of once per item. It is now scaled by quantity (capped at the line total).
 - **`<del>` and `<ins>` stripped from Custom Content** - The custom-content sanitizer removed strike-through/inserted pricing markup because those tags were missing from the allowed HTML list. They are now permitted.
 
