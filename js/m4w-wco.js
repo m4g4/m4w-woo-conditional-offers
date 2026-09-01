@@ -35,10 +35,6 @@
 		'bindCartPageUpdates': function () {
 			var self = this;
 
-			if ( ! $( '.woocommerce-cart' ).length && ! $( '.woocommerce-checkout' ).length ) {
-				return;
-			}
-
 			$( document.body ).on( 'updated_cart_totals', function () {
 				self.refreshInlineOffers();
 			} );
@@ -96,17 +92,13 @@
 					return;
 				}
 
-				if ( rule.popup_once_per_session && self.hasPopupBeenShown( rule.id ) ) {
-					return;
-				}
-
 				var shouldShowToast = !! rule.show_toast;
 				var shouldShowPopup = !! rule.show_popup;
 
-				if ( shouldShowToast ) {
+				if ( shouldShowToast && ! ( rule.popup_once_per_session && self.hasPopupBeenShown( rule.id ) ) ) {
 					self.showToast( rule );
 				}
-				if ( shouldShowPopup ) {
+				if ( shouldShowPopup && ! ( rule.popup_once_per_session && self.hasPopupBeenShown( rule.id ) ) ) {
 					self.showPopup( rule );
 				}
 			} );
@@ -179,6 +171,8 @@
 		},
 
 		'renderToast': function ( rule, content, timeout ) {
+			var self = this;
+
 			$( '.m4w-wco-toast[data-rule-id="' + rule.id + '"]' ).remove();
 			$( '#m4w-wco-toast-css-' + rule.id ).remove();
 

@@ -63,12 +63,18 @@ class M4W_WCO_Rules {
 		$rule['offer_product_id'] = isset( $rule['offer_product_id'] ) ? intval( $rule['offer_product_id'] ) : 0;
 		$rule['label'] = isset( $rule['label'] ) ? sanitize_text_field( $rule['label'] ) : '';
 		$rule['custom_content'] = isset( $rule['custom_content'] ) ? (string) $rule['custom_content'] : '';
-		// Display targets (checkboxes). Derive from a legacy display_mode if the
-		// individual flags are not present yet. The "inline" target is the
+		// Display targets (checkboxes). Derive from a legacy display_mode only if
+		// the individual flags are not present yet. The "inline" target is the
 		// [m4w_wco_offer] shortcode, which always works and needs no flag.
 		$display_mode = isset( $rule['display_mode'] ) ? self::sanitize_display_mode( $rule['display_mode'] ) : '';
-		$rule['show_popup'] = ! empty( $rule['show_popup'] ) || in_array( $display_mode, array( 'popup', 'both' ), true );
-		$rule['show_toast'] = ! empty( $rule['show_toast'] ) || in_array( $display_mode, array( 'toast', 'both' ), true );
+		if ( '' !== $display_mode && ! isset( $rule['show_popup'] ) && ! isset( $rule['show_toast'] ) ) {
+			$rule['show_popup'] = in_array( $display_mode, array( 'popup', 'both' ), true );
+			$rule['show_toast'] = in_array( $display_mode, array( 'toast', 'both' ), true );
+		} else {
+			$rule['show_popup'] = ! empty( $rule['show_popup'] );
+			$rule['show_toast'] = ! empty( $rule['show_toast'] );
+		}
+		unset( $rule['display_mode'] );
 		if ( ! isset( $rule['popup_delay'] ) ) {
 			$rule['popup_delay'] = 1;
 		}
@@ -333,6 +339,8 @@ class M4W_WCO_Rules {
 			'b'      => array(),
 			'i'      => array(),
 			'u'      => array(),
+			'del'    => array(),
+			'ins'    => array(),
 			'ul'     => array( 'class' => true ),
 			'ol'     => array( 'class' => true ),
 			'li'     => array( 'class' => true ),

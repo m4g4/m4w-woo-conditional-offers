@@ -164,13 +164,13 @@ add_submenu_page(
 			'offer_product_id'         => intval( M4W_WCO_Rules::get_post_value( 'offer_product_id' ) ),
 			'label'                    => sanitize_text_field( M4W_WCO_Rules::get_post_value( 'label' ) ),
 			'custom_content'           => M4W_WCO_Rules::sanitize_custom_content( M4W_WCO_Rules::get_post_value( 'custom_content' ) ),
-			'show_popup'               => ! empty( $_POST['show_popup'] ),
-			'show_toast'               => ! empty( $_POST['show_toast'] ),
+			'show_popup'               => '1' === ( $_POST['show_popup'] ?? '' ),
+			'show_toast'               => '1' === ( $_POST['show_toast'] ?? '' ),
 			'popup_delay'              => M4W_WCO_Rules::sanitize_seconds( M4W_WCO_Rules::get_post_value( 'popup_delay', 1 ), 1, 0, 60 ),
 			'toast_timeout'            => M4W_WCO_Rules::sanitize_seconds( M4W_WCO_Rules::get_post_value( 'toast_timeout', 8 ), 8, 3, 60, true ),
-			'popup_once_per_session'   => ! empty( $_POST['popup_once_per_session'] ),
+			'popup_once_per_session'   => '1' === ( $_POST['popup_once_per_session'] ?? '' ),
 			'toast_css'                => M4W_WCO_Rules::sanitize_css( M4W_WCO_Rules::get_post_value( 'toast_css' ) ),
-			'discount_enabled'         => ! empty( $_POST['discount_enabled'] ),
+			'discount_enabled'         => '1' === ( $_POST['discount_enabled'] ?? '' ),
 			'discount_type'            => M4W_WCO_Rules::sanitize_discount_type( M4W_WCO_Rules::get_post_value( 'discount_type', 'percentage' ) ),
 			'discount_value'           => M4W_WCO_Rules::sanitize_discount_value( M4W_WCO_Rules::get_post_value( 'discount_value', 0 ) ),
 			'discount_apply_to'        => M4W_WCO_Rules::sanitize_discount_apply_to( M4W_WCO_Rules::get_post_value( 'discount_apply_to', 'offer_only' ) ),
@@ -366,7 +366,9 @@ add_submenu_page(
 						<tr>
 							<th scope="row"><?php echo esc_html__( 'Display Where', 'm4w-wco' ); ?></th>
 							<td>
+								<input type="hidden" name="show_popup" value="0">
 								<label><input type="checkbox" name="show_popup" id="m4w-wco-show_popup" value="1"> <?php echo esc_html__( 'Popup (modal)', 'm4w-wco' ); ?></label><br>
+								<input type="hidden" name="show_toast" value="0">
 								<label><input type="checkbox" name="show_toast" id="m4w-wco-show_toast" value="1"> <?php echo esc_html__( 'Toast notification (auto-dismiss)', 'm4w-wco' ); ?></label>
 								<p class="description"><?php echo __( 'Choose how the offer is presented automatically when the trigger product is added to the cart. The <code>[m4w_wco_offer]</code> shortcode can be placed anywhere and works independently of these options.', 'm4w-wco' ); ?></p>
 							</td>
@@ -396,6 +398,7 @@ add_submenu_page(
 							<th scope="row"><label for="m4w-wco-popup_once"><?php echo esc_html__( 'Popup Once Per Session', 'm4w-wco' ); ?></label></th>
 							<td>
 								<label>
+									<input type="hidden" name="popup_once_per_session" value="0">
 									<input type="checkbox" name="popup_once_per_session" id="m4w-wco-popup_once" value="1">
 									<?php echo esc_html__( 'Only show popup once per browser session (uses session cookie)', 'm4w-wco' ); ?>
 								</label>
@@ -409,6 +412,7 @@ add_submenu_page(
 							<th scope="row"><label for="m4w-wco-discount_enabled"><?php echo esc_html__( 'Enable Automatic Discount', 'm4w-wco' ); ?></label></th>
 							<td>
 								<label>
+									<input type="hidden" name="discount_enabled" value="0">
 									<input type="checkbox" name="discount_enabled" id="m4w-wco-discount_enabled" value="1">
 									<?php echo esc_html__( 'Apply discount automatically when both trigger and offer products are in cart', 'm4w-wco' ); ?>
 								</label>

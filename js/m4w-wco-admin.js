@@ -133,6 +133,15 @@
 				return field.name !== 'action' && field.name !== self.nonceName;
 			} );
 
+			var checkboxFields = [ 'show_popup', 'show_toast', 'popup_once_per_session', 'discount_enabled' ];
+			$.each( checkboxFields, function ( index, fieldName ) {
+				var $checkbox = $( '[name="' + fieldName + '"]' ).filter( '[type="checkbox"]' );
+				formData = $.grep( formData, function ( field ) {
+					return field.name !== fieldName;
+				} );
+				formData.push( { name: fieldName, value: $checkbox.is( ':checked' ) ? '1' : '0' } );
+			} );
+
 			formData.push( { name: 'action', value: 'm4w_wco_save_offer' } );
 			formData.push( { name: self.nonceName, value: self.nonce } );
 

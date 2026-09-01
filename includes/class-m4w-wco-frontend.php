@@ -128,17 +128,22 @@ class M4W_WCO_Frontend {
 		check_ajax_referer( M4W_WCO_CHECK_NONCE_ACTION, 'nonce' );
 
 		$product_id = isset( $_POST['product_id'] ) ? intval( $_POST['product_id'] ) : 0;
-		$product = wc_get_product( $product_id );
+		$rule_id    = isset( $_POST['rule_id'] ) ? intval( $_POST['rule_id'] ) : 0;
+		$product    = wc_get_product( $product_id );
 
 		if ( ! $product ) {
 			wp_send_json_error( __( 'Product not found.', 'm4w-wco' ) );
 		}
 
+		$rule = $rule_id > 0 ? M4W_WCO_Rules::get_rule( M4W_WCO_Rules::get_rules(), $rule_id ) : null;
+		$discounted_price = $rule ? $this->get_discounted_price( $product, $rule ) : null;
+		$price_html = $discounted_price !== null ? $this->get_price_html_with_discount( $product, $discounted_price ) : $product->get_price_html();
+
 		$button = do_shortcode( sprintf( '[ajax_add_to_cart id="%d" text="%s"]', $product_id, esc_attr__( 'Add to Cart', 'm4w-wco' ) ) );
 
 		wp_send_json_success( array(
 			'name'       => $product->get_name(),
-			'price_html' => $product->get_price_html(),
+			'price_html' => $price_html,
 			'image'      => $product->get_image( 'thumbnail' ),
 			'button'     => $button,
 		) );
@@ -176,9 +181,12 @@ class M4W_WCO_Frontend {
 			return '';
 		}
 
+		$rule = $rule_id > 0 ? M4W_WCO_Rules::get_rule( M4W_WCO_Rules::get_rules(), $rule_id ) : null;
+		$discounted_price = $rule ? $this->get_discounted_price( $product, $rule ) : null;
+
 		$image = $product->get_image( 'thumbnail', array( 'class' => 'conditional-offer-image' ) );
 		$name  = esc_html( $product->get_name() );
-		$price = $product->get_price_html();
+		$price = $discounted_price !== null ? $this->get_price_html_with_discount( $product, $discounted_price ) : $product->get_price_html();
 
 		$button = do_shortcode( sprintf( '[ajax_add_to_cart id="%d" text="%s"]', $product_id, esc_attr__( 'Add to Cart', 'm4w-wco' ) ) );
 
@@ -194,5 +202,68 @@ class M4W_WCO_Frontend {
 		</div>
 		<?php
 		return ob_get_clean();
+	}
+
+	/**
+	 * Calculate the discounted price for a product based on the rule's discount settings.
+	 *
+	 * @param WC_Product $product The product object.
+	 * @param array      $rule    The rule array.
+	 * @return float|null The discounted price, or null if no discount applies.
+	 */
+	private function get_discounted_price( WC_Product $product, array $rule ) {
+		if ( empty( $rule['discount_enabled'] ) ) {
+			return null;
+		}
+
+		$apply_to = $rule['discount_apply_to'] ?? 'offer_only';
+		if ( $apply_to !== 'offer_only' && $apply_to !== 'both' ) {
+			return null;
+		}
+
+		$discount_type  = $rule['discount_type'] ?? 'percentage';
+		$discount_value = floatval( $rule['discount_value'] ?? 0 );
+
+		if ( $discount_value <= 0 ) {
+			return null;
+		}
+
+		$price = $product->get_price();
+		if ( $price === '' || $price === null ) {
+			return null;
+		}
+
+		$price = floatval( $price );
+
+		if ( $discount_type === 'percentage' ) {
+			return $price * ( 1 - $discount_value / 100 );
+		} else {
+			return max( 0, $price - $discount_value );
+		}
+	}
+
+	/**
+	 * Generate price HTML showing both original and discounted price.
+	 *
+	 * @param WC_Product $product         The product object.
+	 * @param float      $discounted_price The calculated discounted price.
+	 * @return string Price HTML with original and sale price.
+	 */
+	private function get_price_html_with_discount( WC_Product $product, float $discounted_price ) {
+		$original_price = $product->get_price();
+		if ( $original_price === '' || $original_price === null ) {
+			return $product->get_price_html();
+		}
+
+		$original_price = floatval( $original_price );
+
+		if ( $discounted_price >= $original_price ) {
+			return $product->get_price_html();
+		}
+
+		$formatted_original = wc_price( $original_price );
+		$formatted_sale     = wc_price( $discounted_price );
+
+		return '<del>' . $formatted_original . '</del> <ins>' . $formatted_sale . '</ins>';
 	}
 }
