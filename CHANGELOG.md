@@ -2,6 +2,13 @@
 
 All notable changes to the M4W Woo Conditional Offers plugin are documented in this file.
 
+## [1.1.1] - 2026-09-01
+
+### Fixed
+- **Multiple cart items only received a discount on one** - WooCommerce derives a fee ID from its name, so every `Cart::add_fee( 'Conditional Offer Discount', ... )` call collided and only the first was kept. All matching discounts are now aggregated into a single fee.
+- **Fixed discounts ignored quantity** - A fixed-amount discount applied once per entire cart line instead of once per item. It is now scaled by quantity (capped at the line total).
+- **`<del>` and `<ins>` stripped from Custom Content** - The custom-content sanitizer removed strike-through/inserted pricing markup because those tags were missing from the allowed HTML list. They are now permitted.
+
 ## [1.1.0] - 2026-09-01
 
 ### Fixed
@@ -16,7 +23,6 @@ All notable changes to the M4W Woo Conditional Offers plugin are documented in t
 - Checkbox fields (`show_popup`, `show_toast`, `popup_once_per_session`, `discount_enabled`) now always send their state on save via hidden inputs, and the admin JavaScript explicitly submits `1`/`0` for each one. Unchecked checkboxes are now saved correctly.
 - Server-side saving now checks for the literal `1` value instead of relying on PHP truthiness of the posted field.
 - Added styling for the discounted price elements (`<del>` original price, `<ins>` sale price) in the offering panel.
-- `<del>` and `<ins>` are now allowed tags in the Custom Content field. Previously the custom-content sanitizer stripped them, so strike-through/inserted pricing markup in custom rule content was lost on save.
 
 ### Added
 - Discounted price calculation for the offer panel (`get_discounted_price()`, `get_price_html_with_discount()`), supporting both percentage and fixed-amount discounts applied to the offer product (`offer_only` / `both`).

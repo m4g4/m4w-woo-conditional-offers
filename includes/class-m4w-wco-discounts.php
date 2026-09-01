@@ -45,6 +45,9 @@ class M4W_WCO_Discounts {
 			return;
 		}
 
+		$total_discount = 0.0;
+		$applied        = false;
+
 		foreach ( $rules as $rule ) {
 			if ( empty( $rule['discount_enabled'] ) ) {
 				continue;
@@ -73,17 +76,15 @@ class M4W_WCO_Discounts {
 				continue;
 			}
 
-			$discount_type = $rule['discount_type'] ?? 'percentage';
+			$discount_type  = $rule['discount_type'] ?? 'percentage';
 			$discount_value = floatval( $rule['discount_value'] ?? 0 );
-			$apply_to = $rule['discount_apply_to'] ?? 'offer_only';
+			$apply_to       = $rule['discount_apply_to'] ?? 'offer_only';
 
 			if ( $discount_value <= 0 ) {
 				continue;
 			}
 
-			$discount_label = __( 'Conditional Offer Discount', 'm4w-wco' );
-
-			foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+			foreach ( $cart->get_cart() as $cart_item ) {
 				$product_id = intval( $cart_item['product_id'] );
 				$variation_id = intval( $cart_item['variation_id'] ?? 0 );
 
@@ -108,16 +109,25 @@ class M4W_WCO_Discounts {
 					continue;
 				}
 
-				$line_total = $product->get_price() * $cart_item['quantity'];
+				$quantity   = intval( $cart_item['quantity'] );
+				$line_total = $product->get_price() * $quantity;
 
 				if ( $discount_type === 'percentage' ) {
-					$discount_amount = - ( $line_total * $discount_value / 100 );
+					$discount_amount = $line_total * $discount_value / 100;
 				} else {
-					$discount_amount = - min( $discount_value, $line_total );
+					// Fixed amount applies per item, so scale it by quantity.
+					$discount_amount = min( $discount_value * $quantity, $line_total );
 				}
 
-				$cart->add_fee( $discount_label, $discount_amount, true );
+				if ( $discount_amount > 0 ) {
+					$total_discount += $discount_amount;
+					$applied = true;
+				}
 			}
+		}
+
+		if ( $applied && $total_discount > 0 ) {
+			$cart->add_fee( __( 'Conditional Offer Discount', 'm4w-wco' ), - $total_discount, true );
 		}
 	}
 }
