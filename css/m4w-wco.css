@@ -12,7 +12,7 @@
 }
 
 .conditional-offer-image {
-	flex: 0 0 150px;
+	flex: 0 0 200px;
 }
 
 .conditional-offer-image img {
@@ -132,7 +132,7 @@
 }
 
 .conditional-offer-popup-body .conditional-offer-image {
-	flex: 0 0 150px;
+	flex: 0 0 200px;
 }
 
 @media (max-width: 480px) {

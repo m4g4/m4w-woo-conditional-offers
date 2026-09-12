@@ -2,7 +2,7 @@
 /**
  * Plugin Name: M4W Woo Conditional Offers
  * Description: Display conditional product offers based on cart contents with automatic discounts.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: m4g4
  * License: GPLv3 or later
  * Text Domain: m4w-wco
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'M4W_WCO_PATH', __DIR__ );
 define( 'M4W_WCO_URL', content_url( 'mu-plugins/m4w-woo-conditional-offers' ) );
-define( 'M4W_WCO_VERSION', '1.1.1' );
+define( 'M4W_WCO_VERSION', '1.1.2' );
 define( 'M4W_WCO_OPTION_KEY', 'm4w_wco_offers' );
 define( 'M4W_WCO_NONCE_ACTION', 'm4w_wco_offers_save' );
 define( 'M4W_WCO_NONCE_NAME', 'm4w_wco_offers_nonce' );
